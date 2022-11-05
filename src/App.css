@@ -21,20 +21,8 @@
 
 	
 }
-.header{
-grid-area: header;
-background-color: chocolate;
 
-}
-.header img {
-	width: 70px;
-	height: 70px;
-	object-fit: cover;
-}
-.nav{
-grid-area: nav;
-background-color: #50C878;
-}
+
 .content{
 	grid-area: content;
 	background-color: plum;

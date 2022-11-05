@@ -1,0 +1,10 @@
+.header{
+	grid-area: header;
+	background-color: chocolate;
+	
+	}
+	.header img {
+		width: 70px;
+		height: 70px;
+		object-fit: cover;
+	}

@@ -1,0 +1,15 @@
+import classes from './Navbar.module.css';
+console.log(classes);
+function Navbar() {
+	return (
+		<nav className={classes.nav}>
+			<ul>
+				<li className={`${classes.item} ${classes.active}`}><a href="#">Profile</a></li>
+				<li className={classes.item}><a href="#">News</a></li>
+				<li className={classes.item}><a href="#">Music</a></li>
+				<li className={classes.item}><a href="#">Settings</a></li>
+			</ul>
+		</nav>
+	)
+}
+export default Navbar;
