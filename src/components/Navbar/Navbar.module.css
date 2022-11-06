@@ -1,13 +1,20 @@
 
-.nav{
-	grid-area: nav;
-	background-color: #50C878;
-	}
-	
-	.item a {
-		color: #fff;
-		text-decoration: none;
-	}
-	.item.active a{
-		color:darkmagenta;
-	}
+.nav {
+    grid-area: nav;
+    background-color: #50C878;
+    padding: 20px;
+}
+.nav ul li {
+    margin-bottom: 10px;
+}
+.item a {
+    text-decoration: none;
+}
+.active {
+    color: cornflowerblue;
+}
+
+.item {
+    color: darkmagenta;
+
+}
