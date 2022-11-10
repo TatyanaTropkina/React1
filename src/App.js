@@ -16,11 +16,11 @@ function App(props) {
 
             <div className="app-wrapper">
                 <Header/>
-                <Navbar/>
+                <Navbar />
                 <div className="app-wrapper-content">
 					<Routes>
-						<Route path="/Profile" element={<Profile posts={props.posts}/>}/>
-						<Route path="/Dialogs/*" element={<Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+						<Route path="/Profile" element={<Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
+						<Route path="/Dialogs/*" element={<Dialogs state={props.state.dialogsPage}/>}/>
 					</Routes>
                 </div>
             </div>
@@ -28,6 +28,6 @@ function App(props) {
 
     );
 }
-
-
+// state={props.state.profilePage}
+// state={props.state.dialogsPage}
 export default App;
