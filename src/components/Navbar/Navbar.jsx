@@ -1,11 +1,11 @@
 import classes from './Navbar.module.css';
 import Friends from "./Friends/Friends";
 import {NavLink} from "react-router-dom";
-console.log(classes);
+// console.log(classes);
 function Navbar(props) {
 
 	return (
-		<div>
+		<div className={classes.navBar}>
 		<nav className={classes.nav}>
 			<ul>
 				<li className={classes.item}><NavLink to="/Profile" className={navData => navData.isActive ? classes.active : classes.item}>Profile</NavLink></li>
@@ -15,8 +15,7 @@ function Navbar(props) {
 				<li className={classes.item}><NavLink to="Settings" className={navData => navData.isActive ? classes.active : classes.item}>Settings</NavLink></li>
 			</ul>
 		</nav>
-			<Friends />
-
+			<Friends friends={props.friends}/>
 		</div>
 	)
 }

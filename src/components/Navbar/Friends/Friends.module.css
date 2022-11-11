@@ -1,0 +1,8 @@
+.friendsItem{
+display: flex;
+    padding: 10px;
+}
+.friendsTitle {
+    text-align: center;
+    font-size: 25px;
+}
