@@ -1,5 +1,5 @@
 import classes from './Navbar.module.css';
-import Friends from "./Friends/Friends";
+import Sidebar from "./Sidebar/Sidebar";
 import {NavLink} from "react-router-dom";
 // console.log(classes);
 function Navbar(props) {
@@ -15,7 +15,8 @@ function Navbar(props) {
 				<li className={classes.item}><NavLink to="Settings" className={navData => navData.isActive ? classes.active : classes.item}>Settings</NavLink></li>
 			</ul>
 		</nav>
-			<Friends friends={props.friends}/>
+
+
 		</div>
 	)
 }
