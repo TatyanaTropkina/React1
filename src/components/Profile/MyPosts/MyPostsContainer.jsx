@@ -14,9 +14,7 @@ let mapDispatchToProps = (dispatch) => {
 	return{
 		//callback name
 		updateNewPostText: (text) => {
-			let action = updateNewPostTextActionCreator(text)
-			dispatch(action);
-			// dispatch(updateNewPostTextActionCreator(text))
+			dispatch(updateNewPostTextActionCreator(text))
 		},
 		addPost: () => {
 			dispatch(addPostActionCreator());
