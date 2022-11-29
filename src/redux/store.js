@@ -1,6 +1,6 @@
-import profileReducer from "./profile-reducer/profile-reducer";
-import dialogsReducer from "./dialogs-reducer/dialogs-reducer";
-import friendsReducer from "./friends-reducer/friends-reducer";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import friendsReducer from "./friends-reducer";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";

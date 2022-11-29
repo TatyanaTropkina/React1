@@ -13,6 +13,8 @@ function Navbar(props) {
 				<li className={classes.item}><NavLink to="/News" className={navData => navData.isActive ? classes.active : classes.item}>News</NavLink></li>
 				<li className={classes.item}><NavLink to="Music" className={navData => navData.isActive ? classes.active : classes.item}>Music</NavLink></li>
 				<li className={classes.item}><NavLink to="Settings" className={navData => navData.isActive ? classes.active : classes.item}>Settings</NavLink></li>
+				<li className={classes.item}><NavLink to="Users" className={navData => navData.isActive ? classes.active : classes.item}>Users</NavLink></li>
+
 			</ul>
 		</nav>
 
