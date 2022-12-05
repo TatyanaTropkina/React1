@@ -1,10 +1,27 @@
 .header{
 	grid-area: header;
 	background-color: chocolate;
+	display: flex;
+	align-items: center;
+justify-content: space-between;
 	
 	}
 	.header img {
 		width: 70px;
 		height: 70px;
+		object-fit: cover;
+	}
+	.loginBlock {
+		margin-right: 10px;
+		color: white;
+	}
+	.loginBlock a {
+		text-decoration: none;
+		color: white;
+	}
+	.loginImg {
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
 		object-fit: cover;
 	}

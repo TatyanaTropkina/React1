@@ -2,6 +2,7 @@ import classes from './ProfileInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import avatar from "../../../assets/images/user-avatar.png";
 function ProfileInfo(props) {
+	// debugger
     if(!props.profile) {
         return <Preloader/>
     }

@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -14,7 +14,7 @@ function App(props) {
 		<BrowserRouter>
 
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
 					<Routes>
@@ -33,6 +33,5 @@ function App(props) {
 
     );
 }
-// state={props.state.profilePage}
-// state={props.state.dialogsPage}
+
 export default App;
