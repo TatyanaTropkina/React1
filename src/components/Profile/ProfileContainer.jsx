@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profile-reducer";
 import React from "react";
 import {useLocation, useNavigate, useParams,} from "react-router-dom"
+import {getUserProfile} from "../../api/api";
+
 
 function withRouter(Component) {
 	function ComponentWithRouterProp(props) {
@@ -28,6 +30,7 @@ class ProfileContainer extends React.Component {
 			.then(response => {
 				this.props.setUserProfile(response.data);
 			})
+
 	}
 	render() {
 		return ( <Profile {...this.props} profile={this.props.profile}/>)
