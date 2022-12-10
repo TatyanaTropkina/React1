@@ -23,14 +23,29 @@ export const usersAPI = {
         return instance.get("auth/me")
     },
 
-    getProfile(profileId) {
-        // return instance.get(`profile/${profileId}`)
-        if(profileId != 0) {
-            profileId = 2
-        }
+    getProfile(userId) {
+        console.warn("Obsolete method. Please use profileAPI")
+
         return (
-            instance.get(`profile/${profileId}`)
+            profileAPI.getProfile(userId)
         )
+    }
+
+}
+export const profileAPI = {
+    getProfile(userId) {
+
+        return (
+            instance.get(`profile/${userId}`)
+        )
+    },
+    getStatus(userId) {
+        return (
+            instance.get(`profile/status/${userId}`)
+        )
+    },
+    updateStatus(status) {
+        return instance.put("profile/status/", {status: status})
     }
 
 }

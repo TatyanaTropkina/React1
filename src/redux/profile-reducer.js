@@ -1,8 +1,9 @@
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS ="SET_STATUS";
 
 let initialState = {
     posts: [
@@ -10,7 +11,8 @@ let initialState = {
         {id: 2, message: "First post", likesCount: 24}
     ],
     newPostText: "",
-    profile: null
+    profile: null,
+    status: ""
 
 }
 const profileReducer = (state = initialState, action) => {
@@ -42,10 +44,16 @@ const profileReducer = (state = initialState, action) => {
                 //profile который придет в AC
                 profile: action.profile
             }
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state;
     }
 }
+// Action Creators
 export const addPostActionCreator = () => {
     return {
         type: ADD_POST
@@ -63,8 +71,15 @@ export const setUserProfile = (profile) => {
         profile
     }
 }
+export const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        status
+    }
+}
 
 
+// Thunk
 export const getUserProfile = (profileId) => {
 
     return (dispatch) => {
@@ -73,5 +88,21 @@ export const getUserProfile = (profileId) => {
         })
     }
 }
-
+export const getStatus = (userId) => (dispatch) =>{
+    // return (dispatch) => {
+        profileAPI.getStatus(userId).then(response => {
+            debugger
+            dispatch(setStatus(response.data))
+        })
+    // }
+}
+export const updateStatus = (status) => (dispatch) => {
+    // return (dispatch) => {
+        profileAPI.updateStatus(status).then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
+        })
+    // }
+}
 export default profileReducer;

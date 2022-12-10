@@ -54,7 +54,7 @@ function ProfileInfo(props) {
                     </ul>
                 </div>
             </div>
-            <ProfileStatus status="hi"/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
 
         </div>
     )
