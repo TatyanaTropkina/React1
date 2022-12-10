@@ -1,4 +1,5 @@
 import {usersAPI} from "../api/api";
+import {setAuthUserData} from "./auth-reducer";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -93,6 +94,7 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
         })
     }
 }
+
 export const follow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
@@ -115,4 +117,5 @@ export const unfollow = (userId) => {
         })
     }
 }
+
 export default usersReducer;
