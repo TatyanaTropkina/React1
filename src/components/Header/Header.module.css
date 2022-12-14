@@ -4,9 +4,10 @@
 	display: flex;
 	align-items: center;
 justify-content: space-between;
+
 	
 	}
-	.header img {
+	.headerImg {
 		width: 70px;
 		height: 70px;
 		object-fit: cover;
@@ -14,6 +15,8 @@ justify-content: space-between;
 	.loginBlock {
 		margin-right: 10px;
 		color: white;
+		display: flex;
+		align-items: center;
 	}
 	.loginBlock a {
 		text-decoration: none;
@@ -21,7 +24,8 @@ justify-content: space-between;
 	}
 	.loginImg {
 		border-radius: 50%;
-		width: 30px;
-		height: 30px;
+		width: 40px;
+		height: 40px;
 		object-fit: cover;
+		margin-left: 10px;
 	}

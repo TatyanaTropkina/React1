@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import { getAuthUserData} from "../../redux/auth-reducer";
+import {getAuthUserData, logout} from "../../redux/auth-reducer";
 
 import {useLocation, useNavigate, useParams,} from "react-router-dom"
 
@@ -24,6 +24,7 @@ function withRouter(Component) {
 class HeaderContainer extends React.Component {
     componentDidMount() {
         this.props.getAuthUserData();
+// debugger
     }
 
     render() {
@@ -39,7 +40,7 @@ class HeaderContainer extends React.Component {
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
-    profile: state.auth.profile,
+    profile: state.profilePage.profile,
 })
 
-export default connect(mapStateToProps, {getAuthUserData})(withRouter(HeaderContainer));
+export default connect(mapStateToProps, {getAuthUserData, logout})(withRouter(HeaderContainer));

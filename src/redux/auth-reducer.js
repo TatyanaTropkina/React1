@@ -1,9 +1,8 @@
-import {authAPI, usersAPI} from "../api/api";
-import profile from "../components/Profile/Profile";
+import {authAPI} from "../api/api";
+import {getUserProfile} from "./profile-reducer";
 
 const SET_USER_DATA = "SET_USER_DATA";
-const SET_USER_PHOTO = "SET_USER_PHOTO";
-const GET_AUTH_USER_PROFILE = "GET_AUTH_USER_PROFILE";
+const SET_ID = "SET_ID";
 
 let initialState = {
     id: null,
@@ -21,20 +20,15 @@ const authReducer = (state = initialState, action) => {
             return {
                 // свойства email и Login перезатрут данные которые в initial state
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload,
+
 
             }
-        // case SET_USER_PHOTO:
-        //     return {
-        //         ...state,
-        //         photo: action.profile
-        //     }
-        // case GET_AUTH_USER_PROFILE:
-        //     return  {
-        //         ...state,
-        //         profile: action.profile
-        //     }
+        case SET_ID:
+            return  {
+                ...state,
+                profile: action.profile
+            }
 
         default:
             return state;
@@ -42,29 +36,41 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export const setAuthUserData = (id, login, email) => ({type: SET_USER_DATA, data: {id, login, email}})
-// export const setUserPhoto = (profile) => ({type: SET_USER_PHOTO}, profile)
+export const setAuthUserData = (id, login, email, isAuth) => ({type: SET_USER_DATA, payload: {id, login, email, isAuth}})
 
 export const getAuthUserData = () => {
     return (dispatch) => {
+
         authAPI.me().then(response => {
             let {id, login, email} = response.data.data;
             if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(id, login, email));
+                dispatch(setAuthUserData(id, login, email, true));
+                // profileAPI.getId(id).then(response => {
+                //     dispatch(setUserId(response.data))
+                // })
+
+                dispatch(getUserProfile(id));
+
             }
         })
-
     }
 }
-// export const getPhoto = (userId) => {
-//     return (dispatch) => {
-//         usersAPI.getPhoto(userId).then(response => {
-//             debugger
-//             if (response.data.resultCode === 0) {
-//                  dispatch(setUserPhoto(profile))
-//             }
-//         })
-//     }
-// }
-
+export const login = (email,password,rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email,password,rememberMe).then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+        })
+    }
+}
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout().then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false));
+            }
+        })
+    }
+}
 export default authReducer;

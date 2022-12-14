@@ -11,7 +11,8 @@ let reducers = combineReducers({
     dialogsPage: dialogsReducer,
     friends: friendsReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    // form: formReducer
 })
 
 // window.store = store;
