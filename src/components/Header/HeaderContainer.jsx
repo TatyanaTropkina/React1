@@ -24,7 +24,7 @@ function withRouter(Component) {
 class HeaderContainer extends React.Component {
     componentDidMount() {
         this.props.getAuthUserData();
-// debugger
+
     }
 
     render() {

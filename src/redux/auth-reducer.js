@@ -3,6 +3,7 @@ import {getUserProfile} from "./profile-reducer";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_ID = "SET_ID";
+const SET_STATUS = "SET_STATUS";
 
 let initialState = {
     id: null,
@@ -10,7 +11,8 @@ let initialState = {
     email: null,
     isAuth: false,
     isFetching: false,
-    photo: null
+    photo: null,
+    error: "",
 
 }
 // reducer
@@ -21,13 +23,16 @@ const authReducer = (state = initialState, action) => {
                 // свойства email и Login перезатрут данные которые в initial state
                 ...state,
                 ...action.payload,
-
-
             }
         case SET_ID:
             return  {
                 ...state,
                 profile: action.profile
+            }
+        case SET_STATUS:
+            return  {
+                ...state,
+                ...action.payload
             }
 
         default:
@@ -37,6 +42,7 @@ const authReducer = (state = initialState, action) => {
 
 
 export const setAuthUserData = (id, login, email, isAuth) => ({type: SET_USER_DATA, payload: {id, login, email, isAuth}})
+export const setErrors = (errors) => ({type: SET_STATUS, payload: errors})
 
 export const getAuthUserData = () => {
     return (dispatch) => {
@@ -55,13 +61,29 @@ export const getAuthUserData = () => {
         })
     }
 }
-export const login = (email,password,rememberMe) => {
+// export const login = (email,password,rememberMe) => {
+//     return (dispatch) => {
+//         authAPI.login(email,password,rememberMe).then(response => {
+//             if(response.data.resultCode === 0) {
+//                 dispatch(getAuthUserData())
+//             } else {
+//
+//             }
+//
+//         })
+//     }
+// }
+export const login = (email, password, rememberMe, setStatus, setSubmitting) => {
     return (dispatch) => {
-        authAPI.login(email,password,rememberMe).then(response => {
-            if(response.data.resultCode === 0) {
-                dispatch(getAuthUserData())
+        authAPI.login(email, password, rememberMe).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData());
+            } else {
+                debugger
+                setStatus(response.data.messages)
+                setSubmitting(false)
             }
-        })
+        });
     }
 }
 export const logout = () => {

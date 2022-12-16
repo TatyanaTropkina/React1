@@ -81,17 +81,21 @@ export const getUserProfile = (userId) => {
 }
 export const getStatus = (userId) => (dispatch) =>{
     // return (dispatch) => {
-        profileAPI.getStatus(userId).then(response => {
-            dispatch(setStatus(response.data))
-        })
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setStatus(response.data))
+
+    })
+
+
     // }
 }
 export const updateStatus = (status) => (dispatch) => {
-        profileAPI.updateStatus(status).then(response => {
-            if(response.data.resultCode === 0) {
-                dispatch(setStatus(status));
-            }
-        })
+    profileAPI.updateStatus(status).then(response => {
+        if(response.data.resultCode === 0) {
+            dispatch(setStatus(status));
+
+        }
+    })
 }
 
 export default profileReducer;

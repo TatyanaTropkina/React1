@@ -32,10 +32,7 @@ class ProfileStatus extends React.Component {
         if (prevProps.status !== this.props.status) {
             this.setState({
                 status: this.props.status
-
             })
-            debugger
-            alert("ggf")
         }
     }
 
@@ -46,7 +43,7 @@ class ProfileStatus extends React.Component {
             <div>
                 {!this.state.editMode &&
                     <div>
-                        <span onDoubleClick={this.activateMode}>{this.props.status || "999"}</span>
+                        <span onDoubleClick={this.activateMode}>{this.props.status || "----"}</span>
                     </div>
 
                 }
@@ -54,12 +51,12 @@ class ProfileStatus extends React.Component {
                     <div>
                         {/*<Form*/}
                         {/*    onSubmit={this.onStatusChange}*/}
-                        {/*    initialValues={{status: ""}}*/}
+                        {/*    initialValues={{statusForm: ""}}*/}
 
                         {/*    render={({handleSubmit, form, submitting, pristine, values}) => (*/}
                         {/*        <form onSubmit={handleSubmit}>*/}
                         {/*            <div>*/}
-                        {/*                <Field name="status" component={FormControl} type="text" typeField="input" placeholder="My status" validate={maxLength(30)}*/}
+                        {/*                <Field name="statusForm" component={FormControl} type="text" typeField="input" placeholder="My status" validate={maxLength(30)}*/}
                         {/*                       autoFocus={true}*/}
                         {/*                       onBlur={this.deactivateMode}*/}
                         {/*                       defaultValue={this.state.status}*/}

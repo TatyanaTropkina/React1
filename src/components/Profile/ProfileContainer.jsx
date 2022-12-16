@@ -9,6 +9,7 @@ import {getAuthUserData} from "../../redux/auth-reducer";
 import {compose} from "redux";
 import Dialogs from "../Dialogs/Dialogs";
 import Login from "../Login/Login";
+import {sendMessageCreator} from "../../redux/dialogs-reducer";
 
 
 function withRouter(Component) {
@@ -37,6 +38,7 @@ class ProfileContainer extends React.Component {
 		this.props.getUserProfile(userId);
 		this.props.getStatus(userId)
 
+
 	}
 	render() {
 
@@ -51,7 +53,7 @@ let mapStateToProps = (state) => ({
 	status: state.profilePage.status
 })
 
-export default compose(connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),withRouter ,
+export default compose(connect(mapStateToProps, { getUserProfile, getStatus, updateStatus}),withRouter ,
 	withAuthRedirect,
 )(ProfileContainer)
 
