@@ -47,39 +47,23 @@ export const setErrors = (errors) => ({type: SET_STATUS, payload: errors})
 export const getAuthUserData = () => {
     return (dispatch) => {
 
-        authAPI.me().then(response => {
+       return authAPI.me().then(response => {
             let {id, login, email} = response.data.data;
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserData(id, login, email, true));
-                // profileAPI.getId(id).then(response => {
-                //     dispatch(setUserId(response.data))
-                // })
-
                 dispatch(getUserProfile(id));
 
             }
         })
     }
 }
-// export const login = (email,password,rememberMe) => {
-//     return (dispatch) => {
-//         authAPI.login(email,password,rememberMe).then(response => {
-//             if(response.data.resultCode === 0) {
-//                 dispatch(getAuthUserData())
-//             } else {
-//
-//             }
-//
-//         })
-//     }
-// }
+
 export const login = (email, password, rememberMe, setStatus, setSubmitting) => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData());
             } else {
-                debugger
                 setStatus(response.data.messages)
                 setSubmitting(false)
             }

@@ -5,7 +5,8 @@ export const FormControl = ({input, meta, ...props}) => {
     // debugger
     const Element = props.typeField;
 
-    const hasError = meta.error && meta.touched;
+    const hasError =                         {/*{touched.email && errors.email && (<div>{errors.email} hh</div>)}*/}
+
     return (
         <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
             <div>
