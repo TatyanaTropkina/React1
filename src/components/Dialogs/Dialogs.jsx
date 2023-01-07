@@ -5,30 +5,71 @@ import React from "react";
 import {Navigate} from "react-router-dom";
 
 import styles from "./../../components/Login/Login.css"
-import {Form, Field} from 'react-final-form'
-import {FormControl} from "../common/FormsControls/FormsControls";
-import {required} from "../../utilits/validators/validators";
+// import {Form, Field} from 'react-final-form'
+// import {FormControl} from "../common/FormsControls/FormsControls";
+// import {required} from "../../utilits/validators/validators";
+import {Formik, Form, Field} from 'formik';
+import * as Yup from "yup";
+
+const SignupSchema = Yup.object().shape({
+    newMessageBody: Yup.string()
+        .required("You can't send empty message")
+});
 
 
 export const MessageForm = (props) => {
     return (
-        <Form
-            onSubmit={props.onSubmit}
-            initialValues={{newMessageBody: ""}}
-            render={({handleSubmit, form, submitting, pristine, values}) => (
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <Field name="newMessageBody" component={FormControl} type="text" typeField="textarea"
-                               placeholder="My message" validate={required}/>
-                    </div>
-                    <div className={styles.buttons}>
-                        <button type="submit" disabled={submitting || pristine}> Send message</button>
-                        <button type="button" onClick={form.reset} disabled={submitting || pristine}>Reset</button>
-                    </div>
-                    <pre>{JSON.stringify(values, 0, 2)}</pre>
-                </form>
-            )}
-        />
+        <div>
+
+            <Formik
+                initialValues={{
+                    newMessageBody: ""
+                }}
+                validationSchema={SignupSchema}
+                onSubmit = {(values, actions, ) => {
+                    props.onSubmit(values);
+                    actions.setSubmitting(false);
+                    actions.resetForm({
+                        values: {newMessageBody: "",},
+                    });
+                }}
+            >
+                {({errors, values,touched, isSubmitting}) => (
+                    <Form>
+                        <Field name="newMessageBody">
+                            {({field, form, meta}) => (
+                                <div>
+                                    <textarea type="text" {...field} placeholder="my message"/>
+                                    {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+                                </div>
+                            )}
+
+                        </Field>
+                        <div>
+                            <button type="submit" disabled={isSubmitting}>Send message</button>
+                        </div>
+
+                    </Form>
+                )}
+            </Formik>
+        </div>
+        // <Form
+        //     onSubmit={props.onSubmit}
+        //     initialValues={{newMessageBody: ""}}
+        //     render={({handleSubmit, form, submitting, pristine, values}) => (
+        //         <form onSubmit={handleSubmit}>
+        //             <div>
+        //                 <Field name="newMessageBody" component={FormControl} type="text" typeField="textarea"
+        //                        placeholder="My message" validate={required}/>
+        //             </div>
+        //             <div className={styles.buttons}>
+        //                 <button type="submit" disabled={submitting || pristine}> Send message</button>
+        //                 <button type="button" onClick={form.reset} disabled={submitting || pristine}>Reset</button>
+        //             </div>
+        //             <pre>{JSON.stringify(values, 0, 2)}</pre>
+        //         </form>
+        //     )}
+        // />
 
     )
 }

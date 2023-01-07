@@ -14,7 +14,8 @@ export const LoginFormik = (props) => {
     });
     return (
         <div>
-            <Formik onSubmit={props.onSubmit}
+            <Formik
+                onSubmit={props.onSubmit}
                     initialValues={{
                         email: "",
                         password: "",
@@ -22,8 +23,16 @@ export const LoginFormik = (props) => {
                     }}
                     validateOnBlur
                     validationSchema={SignupSchema}
+                    // onSubmit = {(values, actions, ) => {
+                    //     props.onSubmit(values);
+                    //     actions.setSubmitting(false);
+                    //     actions.resetForm({
+                    //         values: {password: "",},
+                    //     });
+                    //     debugger
+                    // }}
             >
-                {({errors, touched, isValid, dirty, status, isSubmitting}) => (
+                {({errors, touched,values, isValid, dirty, status, isSubmitting}) => (
                     <Form>
 
                         <div>

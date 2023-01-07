@@ -16,7 +16,7 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsers
+    getUsers, getUsersSuper, getUsersSuperSelector
 } from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
@@ -63,6 +63,7 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         // берем из redux-store
+        // users: getUsers(state),
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
